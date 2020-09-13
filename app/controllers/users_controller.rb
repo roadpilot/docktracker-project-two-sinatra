@@ -1,5 +1,24 @@
 class UsersController < ApplicationController
 
+  post "/" do
+    @user = User.find_by(handle: params[:handle])
+    # binding.pry
+    if @user && @user.authenticate(params[:password])
+        session[:user_id] = @user.id
+        # flash[:message] = "Welcome, #{@user.username}"
+        # # redirect "/tweets/#{@user.id}"
+        # # binding.pry
+        # redirect '/tweets'
+        # logged_in?.to_s
+    else
+        # show an error message
+        # flash[:message] = "Your credentials were invalid. Try again!"
+        # # redirecting back to the login page
+        # # this is where my error message with will display (at the login route)
+    end
+    redirect '/'
+  end
+
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
@@ -10,6 +29,19 @@ class UsersController < ApplicationController
     erb :"/users/new.html"
   end
 
+  # POST: /users/new
+  post "/users/new" do
+    if params[:handle].empty? || params[:email].empty? || params[:password].empty?
+      redirect '/users/new' 
+    else
+      @user = User.create(params)
+      session[:user_id] = @user.id
+      redirect '/locations'
+    end
+  end
+
+
+  
   # POST: /users
   post "/users" do
     redirect "/users"
@@ -33,5 +65,10 @@ class UsersController < ApplicationController
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     redirect "/users"
+  end
+
+  get "/logoff" do
+    session.clear
+    redirect "/"
   end
 end

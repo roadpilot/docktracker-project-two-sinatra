@@ -2,7 +2,11 @@ class LocationsController < ApplicationController
 
   # GET: /locations
   get "/locations" do
-    erb :"/locations/index.html"
+    if logged_in?
+      erb :"/locations/index.html"
+    else
+      erb :index
+    end
   end
 
   # GET: /locations/new
