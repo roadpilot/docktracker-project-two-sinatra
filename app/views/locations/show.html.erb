@@ -1,1 +1,13 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<%= @location.business_name %><br>
+<%= @location.address %>
+<% if current_user.id == @location.user_id %>
+<input type="button" onclick="self.location.href='/locations/<%= @location.id %>/edit'" value="Edit">
+<% end %>
+<% @comments.each do |a|%>
+<%= a.comment %><br>
+<% end %>
+<form method="post" action="/comment/new">
+<input type="hidden" name="location_id" value="<%= @location.id %>">
+<input type="hidden" name="user_id" value="<%= current_user.id %>">
+<input type="submit" value="Add comment">
+</form>
