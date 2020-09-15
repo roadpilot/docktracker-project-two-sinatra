@@ -42,7 +42,7 @@ class LocationsController < ApplicationController
   get "/locations/:id" do
     @location = Location.find(params[:id])
     @comments = Comment.find_by(location_id: @location.id)
-    binding.pry
+    # binding.pry
     erb :"/locations/show.html"
   end
 

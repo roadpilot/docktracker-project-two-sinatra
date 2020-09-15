@@ -1,11 +1,25 @@
-<%= @location.business_name %><br>
-<%= @location.address %>
+<b>Business name: </b><%= @location.business_name %><br>
+<b>Address: </b><%= @location.address %><br>
 <% if current_user.id == @location.user_id %>
-<input type="button" onclick="self.location.href='/locations/<%= @location.id %>/edit'" value="Edit">
+<input type="button" onclick="self.location.href='/locations/<%= @location.id %>/edit'" value="Edit location information"><br>
 <% end %>
-<% @comments.each do |a|%>
-<%= a.comment %><br>
-<% end %>
+<%
+friendly = "does not have any reports about being"
+if @comments
+%>
+<b>Comments: </b><br><br>
+<%
+    friendly = "IS NOT"
+    if @comments.friendly53
+        friendly = "IS"
+    end
+else
+%>
+<b>This location has no comments.</b><br>
+<%
+end 
+%>
+This location <%= friendly %> 53 friendly.<br>
 <form method="post" action="/comment/new">
 <input type="hidden" name="location_id" value="<%= @location.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
