@@ -38,17 +38,33 @@ class LocationsController < ApplicationController
     erb :"/locations/index.html"
   end
 
+  # GET: /locations/5/edit
+  get "/locations/:id/edit" do
+    @location = Location.find(params[:id])
+    erb :"/locations/edit.html" 
+  end
+
+  patch "/locations/:id/edit" do
+    if params[:business_name] != "" and params[:address] != ""
+      @location = Location.find(params[:id])
+      @location.business_name = params[:business_name]
+      @location.address = params[:address]
+      @location.save
+      if params[:comments] != "" or params[:friendly53]=="1"
+        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments], friendly53: params[:friendly53])
+      end
+    else
+    end
+    # binding.pry
+    redirect "/locations/#{@location.id}"
+  end
+
   # GET: /locations/5
   get "/locations/:id" do
     @location = Location.find(params[:id])
-    @comments = Comment.find_by(location_id: @location.id)
+    @comments = @location.comments
     # binding.pry
     erb :"/locations/show.html"
-  end
-
-  # GET: /locations/5/edit
-  get "/locations/:id/edit" do
-    erb :"/locations/edit.html"
   end
 
   # PATCH: /locations/5

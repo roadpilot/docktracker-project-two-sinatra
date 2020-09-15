@@ -6,16 +6,19 @@
 <%
 friendly = "does not have any reports about being"
 if @comments
-%>
-<b>Comments: </b><br><br>
-<%
-    friendly = "IS NOT"
-    if @comments.friendly53
-        friendly = "IS"
-    end
+    %>
+    <b>Comments: </b><br><br>
+    <ul>
+    <%  @comments.each do |a|
+        %>
+        <li>K<%= a.comment %><input type="button" value="edit" onclick="self.location.href='/comments/<%= a.id %>/edit'"></li>
+        <%
+        end %>
+    </ul>
+        <%
 else
 %>
-<b>This location has no comments.</b><br>
+    <b>This location has no comments.</b><br>
 <%
 end 
 %>

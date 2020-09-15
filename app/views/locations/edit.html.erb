@@ -1,1 +1,25 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h2>Edit an existing location...</h2>
+<form method="post" action="/locations/<%= @location.id %>/edit">
+<input type="hidden" name="_method" value="patch">
+<table>
+<tr>
+<td><b>Business name</td>
+<td><b>Address</td>
+</tr>
+<tr>
+<td><input type="text" name="business_name" value="<%= @location.business_name %>"></td>
+<td><input type="text" name="address" value="<%= @location.address %>"></td>
+</tr>
+<tr>
+<td colspan=2><b>Add a comment...</td>
+</tr>
+<tr>
+<td colspan=2><textarea name="comment" style="width:100%" maxlength=255></textarea></td>
+</tr>
+<tr>
+<td colspan=2><input type="checkbox" name="friendly53" value="1"> This location is 53 friendly.</td>
+</tr>
+</table>
+<input type="submit" value="Update this location">
+<input type="button" value="Cancel" onclick="self.location.href='/locations'">
+</form>
