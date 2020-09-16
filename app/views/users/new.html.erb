@@ -1,4 +1,7 @@
-<h1>Sign up as a new user.</h1>
+      <% if flash[:error] %>
+      <h3 style="color:red;"><%= flash[:error] %></h3>
+      <% end %>
+      <h1>Sign up as a new user.</h1>
 <form method="post" action="/users/new">
 <label>Handle:<input type="text" name="handle"></label><br>
 <label>Email:<input type="text" name="email"></label><br>

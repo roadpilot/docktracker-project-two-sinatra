@@ -31,12 +31,15 @@ class UsersController < ApplicationController
 
   # POST: /users/new
   post "/users/new" do
-    if params[:handle].empty? || params[:email].empty? || params[:password].empty?
-      redirect '/users/new' 
-    else
-      @user = User.create(params)
+  # if params[:handle].empty? || params[:email].empty? || params[:password].empty?
+  @user = User.new(params)
+    if @user.save
+      binding.pry
       session[:user_id] = @user.id
       redirect '/locations'
+    else
+      flash[:error] = "User signup failed: #{@user.errors.full_messages.to_sentence}"
+      redirect '/users/new' 
     end
   end
 

@@ -7,6 +7,7 @@ class ApplicationController < Sinatra::Base
     set :views, 'app/views'
     enable :sessions
     set :session_secret, "P.=]8pTbS+76Hpw*"
+    register Sinatra::Flash
   end
 
   #this is the initial corneal welcome page - just wanted to keep it for reference
