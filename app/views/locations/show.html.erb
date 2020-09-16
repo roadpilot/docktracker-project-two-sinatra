@@ -1,7 +1,29 @@
-<b>Business name: </b><%= @location.business_name %><br>
-<b>Address: </b><%= @location.address %><br>
 <% if current_user.id == @location.user_id %>
-<input type="button" onclick="self.location.href='/locations/<%= @location.id %>/edit'" value="Edit location information"><br>
+    <form method="post" action="/locations/<%= @location.id %>/edit">
+    <input type="hidden" name="_method" value="patch">
+    <table>
+    <tr>
+    <td><b>Business name</td>
+    <td><b>Address</td>
+    </tr>
+    <tr>
+    <td><input type="text" name="business_name" value="<%= @location.business_name %>"></td>
+    <td><input type="text" name="address" value="<%= @location.address %>"></td>
+    </tr>
+    </table>
+    <input type="submit" value="Update location information"><br>
+    </form>
+<% else %>
+    <table>
+    <tr>
+    <td><b>Business name</td>
+    <td><b>Address</td>
+    </tr>
+    <tr>
+    <td><%= @location.business_name %></td>
+    <td><%= @location.address %></td>
+    </tr>
+    </table>
 <% end %>
 <%
 friendly = "does not have any reports about being"
