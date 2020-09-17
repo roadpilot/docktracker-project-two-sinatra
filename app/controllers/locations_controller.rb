@@ -50,8 +50,8 @@ class LocationsController < ApplicationController
       @location.business_name = params[:business_name]
       @location.address = params[:address]
       @location.save
-      if params[:comments] != "" or params[:friendly53]=="1"
-        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments], friendly53: params[:friendly53])
+      if params[:comments] != ""
+        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments])
       end
     else
     end

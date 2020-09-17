@@ -1,39 +1,39 @@
+<h2>DockTracker Location</h2>
+<% if flash[:error] %>
+<h2 style="color:red;"><%= flash[:error] %></h2>
+<% end %>
+<table>
+<tr>
+<td><b>Business name</td>
+<td><b>Address</td>
+</tr>
 <% if current_user.id == @location.user_id %>
+    <tr>
     <form method="post" action="/locations/<%= @location.id %>/edit">
     <input type="hidden" name="_method" value="patch">
-    <table>
-    <tr>
-    <td><b>Business name</td>
-    <td><b>Address</td>
-    </tr>
-    <tr>
     <td><input type="text" name="business_name" value="<%= @location.business_name %>"></td>
     <td><input type="text" name="address" value="<%= @location.address %>"></td>
-    </tr>
-    </table>
-    <input type="submit" value="Update location information"><br>
-    </form>
-<% else %>
-    <table>
     <tr>
-    <td><b>Business name</td>
-    <td><b>Address</td>
+    <td colspan=2><input type="submit" value="Update location information"></td>
     </tr>
+    </form>
+    </tr>
+<% else %>
     <tr>
     <td><%= @location.business_name %></td>
     <td><%= @location.address %></td>
     </tr>
-    </table>
 <% end %>
+<tr>
+<td colspan=2>
 <%
-friendly = "does not have any reports about being"
 if @comments
     %>
-    <b>Comments: </b><br><br>
+    <b>Comments: </b>
     <ul>
     <%  @comments.each do |a|
         %>
-        <li>K<%= a.comment %><input type="button" value="edit" onclick="self.location.href='/comments/<%= a.id %>/edit'"></li>
+        <li><%= a.comment %><br><input type="button" value="edit" onclick="self.location.href='/comments/<%= a.id %>/edit'"></li>
         <%
         end %>
     </ul>
@@ -44,9 +44,18 @@ else
 <%
 end 
 %>
-This location <%= friendly %> 53 friendly.<br>
-<form method="post" action="/comment/new">
+</td>
+</tr>
+<td colspan=2><b>Add a comment...</td>
+</tr>
+<tr>
+<td colspan=2>
+<form method="post" action="/comments">
 <input type="hidden" name="location_id" value="<%= @location.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
+<textarea name="comment" style="width:100%" maxlength=255></textarea><br>
 <input type="submit" value="Add comment">
 </form>
+</td>
+</tr>
+</table>

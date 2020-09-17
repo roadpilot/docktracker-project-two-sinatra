@@ -23,6 +23,7 @@
       </footer>
       <div class="nav">
       <% if logged_in? %>
+      <input type="button" value="Home / Search" onclick="self.location.href='/'">
       <input type="button" value="Log out" onclick="self.location.href='/logoff'">
       <% end %>
       </div>
