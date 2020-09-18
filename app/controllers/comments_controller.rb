@@ -1,15 +1,5 @@
 class CommentsController < ApplicationController
 
-  # GET: /comments
-  get "/comments" do
-    erb :"/comments/index.html"
-  end
-
-  # GET: /comments/new
-  get "/comments/new" do
-    erb :"/comments/new.html"
-  end
-
   # POST: /comments
   post "/comments" do
     # binding.pry
@@ -18,10 +8,6 @@ class CommentsController < ApplicationController
       flash[:error] = comment.errors.full_messages.to_sentence
     end
     redirect "/locations/#{params[:location_id]}"
-  end
-
-  # PATCH: /comments
-  patch "/comments" do
   end
 
   # GET: /comments/5
