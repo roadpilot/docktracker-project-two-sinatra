@@ -9,7 +9,6 @@ td {padding-right:10px;}
     <label>Address or business name:<input type="text" name="search" value="<%= @search%>"></label><br>
     <input type="submit" value="Search">
     <input type="button" value="Clear" onclick="self.location.href='/locations'">
-    <input type="button" value="Add new location" onclick="self.location.href='/locations/new'">
     </form>
 <%if @search != nil %>
     <h3>Search results...</h3>
