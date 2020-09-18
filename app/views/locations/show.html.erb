@@ -33,7 +33,13 @@ if @comments
     <ul>
     <%  @comments.each do |a|
         %>
-        <li><%= a.comment %><br><input type="button" value="edit" onclick="self.location.href='/comments/<%= a.id %>/edit'"></li>
+        <li><%= a.comment %> (<em>from '<%= User.find(a.user_id).handle %>' at <%= a.updated_at %></em>)<br>
+        <% if session[:user_id] == a.user_id or 1 %>
+        <input type="button" value="Edit / Delete" onclick="self.location.href='/comments/<%= a.id %>/edit'">
+        <% else %>
+        <input type="button" disabled value="Edit / Delete">
+        <% end %>
+        </li>
         <%
         end %>
     </ul>
