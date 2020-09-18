@@ -1,4 +1,7 @@
 <h2>Add a new location...</h2>
+<% if flash[:error] %>
+<h2 style="color:red;"><%= flash[:error] %></h2>
+<% end %>
 <form method="post" action="/locations/new">
 <table>
 <tr>

@@ -11,21 +11,28 @@ class LocationsController < ApplicationController
 
   # GET: /locations/new
   get "/locations/new" do
-    erb :"/locations/new.html"
+    if logged_in?
+      erb :"/locations/new.html"
+    else
+      erb :index
+    end
   end
 
   # POST: /locations/new
   post "/locations/new" do
-    if params[:business_name] != "" and params[:address] != ""
-      @location=Location.create(user_id: session[:user_id], business_name: params[:business_name], address: params[:address])
-      if params[:comments] != "" or params[:friendly53]=="1"
-        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments], friendly53: params[:friendly53])
+    # if params[:business_name] != "" and params[:address] != ""
+    @location=Location.new(user_id: session[:user_id], business_name: params[:business_name], address: params[:address])
+    if @location.save
+      if params[:comments] != ""
+        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments])
       end
+      @result = Location.all
+      erb :"/locations/index.html"
     else
+      flash[:error] = @location.errors.full_messages.to_sentence
+       redirect "/locations/new"
     end
     # binding.pry
-    @result = Location.all
-    erb :"/locations/index.html"
   end
 
   # POST: /locations
