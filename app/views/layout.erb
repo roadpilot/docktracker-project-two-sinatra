@@ -18,16 +18,16 @@
 
         <%= yield %>
 
-      <footer class="branding">
+        <footer class="branding">
+        <div class="nav">
+        <% if logged_in? %>
+        <input type="button" value="Home / Search" onclick="self.location.href='/'">
+        <input type="button" value="Add new location" onclick="self.location.href='/locations/new'">
+        <input type="button" value="Log out" onclick="self.location.href='/logoff'">
+        <% end %>
+        </div>
         <small>&copy; 2020 <strong>DockTracker</strong></small>
       </footer>
-      <div class="nav">
-      <% if logged_in? %>
-      <input type="button" value="Home / Search" onclick="self.location.href='/'">
-      <input type="button" value="Add new location" onclick="self.location.href='/locations/new'">
-      <input type="button" value="Log out" onclick="self.location.href='/logoff'">
-      <% end %>
-      </div>
     </div>
 
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
