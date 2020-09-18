@@ -1,5 +1,5 @@
-<% if flash[:error] %>
-<h2 style="color:red;"><%= flash[:error] %></h2>
+<% if session[:user_id] != @comment.user_id  %>
+<h2 style="color:red;">You are not authorized to edit this comment.</h2>
 <% end %>
 <table>
 <tr>
@@ -12,14 +12,18 @@
 <td></td>
 </tr>
 </table>
+<% if session[:user_id] == @comment.user_id  %>
 <form method="post" action="/comments/<%= @comment.id %>/edit">
 <input type="hidden" name="_method" value="patch">
 <input type="hidden" name="location_id" value="<%= @location.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
 <textarea name="comment" style="width:100%" maxlength=255><%= @comment.comment %></textarea>
-<input type="submit" value="Save comment">
-</form>
-<form method="post" action="/comments/<%= @comment.id %>/delete">
+<input type="submit" value="Save comment"></form><form method="post" action="/comments/<%= @comment.id %>/delete">
 <input type="hidden" name="_method" value="delete">
 <input type="submit" value="Delete comment">
 </form>
+<% else %>
+<br>
+<%= @comment.comment %><br>
+<% end %>
+<input type="button" value="Cancel" onclick="window.history.go(-1)">
