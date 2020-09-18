@@ -10,16 +10,15 @@ class CommentsController < ApplicationController
     redirect "/locations/#{params[:location_id]}"
   end
 
-  # GET: /comments/5
-  get "/comments/:id" do
-    erb :"/comments/show.html"
-  end
-
   # GET: /comments/5/edit
   get "/comments/:id/edit" do
-    @comment = Comment.find(params[:id])
-    @location = Location.find(@comment.location_id)
-    erb :"/comments/edit.html"
+    if logged_in?
+      @comment = Comment.find(params[:id])
+      @location = Location.find(@comment.location_id)
+      erb :"/comments/edit.html"
+    else
+      redirect :'/'
+    end
   end
 
   # PATCH: /comments/5/edit
