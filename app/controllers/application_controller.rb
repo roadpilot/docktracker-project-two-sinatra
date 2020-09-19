@@ -15,6 +15,7 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  # IF USER IS LOGGED IN, REDIRECT USER TO LOCATIONS SEARCH PAGE - NO NEED TO PROMPT THEM TO LOGIN AGAIN
   get "/" do
     if logged_in?
       redirect '/locations'
