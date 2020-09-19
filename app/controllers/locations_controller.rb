@@ -5,7 +5,7 @@ class LocationsController < ApplicationController
     if logged_in?
       erb :"/locations/index.html"
     else
-      erb :index
+      redirect "/"
     end
   end
 
@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
     if logged_in?
       erb :"/locations/new.html"
     else
-      erb :index
+      redirect "/"
     end
   end
 
@@ -69,7 +69,7 @@ class LocationsController < ApplicationController
       # binding.pry
       erb :"/locations/show.html"
     else
-      erb :index
+      redirect "/"
     end
   end
 
