@@ -26,11 +26,11 @@ class LocationsController < ApplicationController
     # if params[:business_name] != "" and params[:address] != ""
     @location=Location.new(user_id: session[:user_id], business_name: params[:business_name], address: params[:address])
     if @location.save
-      if params[:comments] != ""
-        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comments])
+      if params[:comment] != ""
+        # binding.pry
+        Comment.create(location_id: @location.id, user_id: session[:user_id], comment: params[:comment])
       end
-      @result = Location.all
-      erb :"/locations/index.html"
+      redirect "/locations/#{@location.id}"
     else
       flash[:error] = @location.errors.full_messages.to_sentence
        redirect "/locations/new"
