@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
 
+  # IF USER IS LOGGED IN, SHOW THE LOCATIONS SEARCH PAGE
   # GET: /locations
   get "/locations" do
     if logged_in?
@@ -9,6 +10,7 @@ class LocationsController < ApplicationController
     end
   end
 
+  # IF USER IS LOGGED IN, SHOW THE LOCATIONS CREATE PAGE
   # GET: /locations/new
   get "/locations/new" do
     if logged_in?
@@ -18,6 +20,7 @@ class LocationsController < ApplicationController
     end
   end
 
+  # PROCESS LOCATIONS CREATE FORM DATA
   # POST: /locations/new
   post "/locations/new" do
     # if params[:business_name] != "" and params[:address] != ""
@@ -35,6 +38,7 @@ class LocationsController < ApplicationController
     # binding.pry
   end
 
+  # PROCESS LOCATIONS SEARCH FORM DATA
   # POST: /locations
   post "/locations" do
     @search = params[:search]
@@ -61,6 +65,7 @@ class LocationsController < ApplicationController
     redirect "/locations/#{@location.id}"
   end
 
+  # IF USER IS LOGGED IN, SHOW THE LOCATION INFORMATION AND COMMENTS PAGE
   # GET: /locations/5
   get "/locations/:id" do
     if logged_in?
