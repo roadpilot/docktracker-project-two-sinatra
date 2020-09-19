@@ -35,9 +35,10 @@ class CommentsController < ApplicationController
 
   # DELETE: /comments/5/delete
   delete "/comments/:id/delete" do
-    if session[:user_id] == @comment.user_id
+    comment = Comment.find(params[:id])
+    if session[:user_id] == comment.user_id
       location_id = Comment.find(params[:id]).location_id
-      Comment.find(params[:id]).destroy
+      comment.destroy
     end
     redirect "/locations/#{location_id}"
   end

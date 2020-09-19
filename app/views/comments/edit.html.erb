@@ -18,12 +18,12 @@
 <input type="hidden" name="location_id" value="<%= @location.id %>">
 <input type="hidden" name="user_id" value="<%= current_user.id %>">
 <textarea name="comment" style="width:100%" maxlength=255><%= @comment.comment %></textarea>
-<input type="submit" value="Save comment"></form><form method="post" action="/comments/<%= @comment.id %>/delete">
+<input style="width:110px" type="submit" value="Save comment"></form><form method="post" action="/comments/<%= @comment.id %>/delete">
 <input type="hidden" name="_method" value="delete">
-<input type="submit" value="Delete comment">
+<input style="width:110px" type="submit" value="Delete comment" onclick="if (!confirm('Permanently remove this comment?')){return false}">
 </form>
 <% else %>
 <br>
 <%= @comment.comment %><br>
 <% end %>
-<input type="button" value="Cancel" onclick="window.history.go(-1)">
+<input style="width:110px" type="button" value="Cancel" onclick="window.history.go(-1)">
