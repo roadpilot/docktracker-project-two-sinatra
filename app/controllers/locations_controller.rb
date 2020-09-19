@@ -45,12 +45,7 @@ class LocationsController < ApplicationController
     erb :"/locations/index.html"
   end
 
-  # GET: /locations/5/edit
-  get "/locations/:id/edit" do
-    @location = Location.find(params[:id])
-    erb :"/locations/edit.html" 
-  end
-
+  # PATCH TO EDIT LOCATION INFORMATION
   patch "/locations/:id/edit" do
     if params[:business_name] != "" and params[:address] != ""
       @location = Location.find(params[:id])
@@ -68,19 +63,30 @@ class LocationsController < ApplicationController
 
   # GET: /locations/5
   get "/locations/:id" do
-    @location = Location.find(params[:id])
-    @comments = @location.comments
-    # binding.pry
-    erb :"/locations/show.html"
+    if logged_in?
+      @location = Location.find(params[:id])
+      @comments = @location.comments
+      # binding.pry
+      erb :"/locations/show.html"
+    else
+      erb :index
+    end
   end
 
-  # PATCH: /locations/5
-  patch "/locations/:id" do
-    redirect "/locations/:id"
-  end
+  # PATCH: /locations/5  RESERVED FOR FUTURE USE
+  # patch "/locations/:id" do
+  #   redirect "/locations/:id"
+  # end
 
-  # DELETE: /locations/5/delete
-  delete "/locations/:id/delete" do
-    redirect "/locations"
-  end
+  # DELETE: /locations/5/delete  RESERVED FOR FUTURE USE
+  # delete "/locations/:id/delete" do
+  #   redirect "/locations"
+  # end
+
+  # GET: /locations/5/edit  RESERVED FOR FUTURE USE
+  # get "/locations/:id/edit" do
+  #   @location = Location.find(params[:id])
+  #   erb :"/locations/edit.html" 
+  # end
+
 end
