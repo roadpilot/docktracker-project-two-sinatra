@@ -6,7 +6,7 @@ td {padding-right:10px;}
 </style>
 <div class="content">
     <form method="post" action="/locations">
-    <label>Address or business name:<input type="text" name="search" value="<%= @search%>"></label><br>
+    <label>Address or business name:<input type="text" name="search" value="<%= @search %>"></label><br>
     <input type="submit" value="Search">
     <input type="button" value="Clear" onclick="self.location.href='/locations'">
     </form>
@@ -19,6 +19,8 @@ td {padding-right:10px;}
         <%end%>
     </table>
 <%else%>
-    <h3>No results for your search.  Try again...</h3>
+    <% if @search != "" %>    
+        <h3>No results for your search.  Try again...</h3>
+    <%end%>
 <%end%>
 </div>

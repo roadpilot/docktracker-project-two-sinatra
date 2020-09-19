@@ -4,6 +4,8 @@ class LocationsController < ApplicationController
   # GET: /locations
   get "/locations" do
     if logged_in?
+      @result = []
+      @search = ""
       erb :"/locations/index.html"
     else
       redirect "/"
