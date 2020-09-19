@@ -1,5 +1,5 @@
 <h2>Welcome to DockTracker!</h2>
-Welcome back, <%= current_user.handle %>! (member since <%= current_user.created_at %>.)<br>
+Welcome, <%= current_user.handle %>! (member since <%= current_user.created_at %>.)<br>
 Search for a location by address or business name.  Use '%' for wildcard searches.
 <style>
 td {padding-right:10px;}
@@ -12,10 +12,10 @@ td {padding-right:10px;}
     </form>
 <%if @search != nil %>
     <h3>Search results...</h3>
-    <table cellspacing=2>
-       <tr><td></td><td><b>Business</td><td><b>Address</td><td><b>Reported comments</td></tr>
+    <table cellspacing=2 width="600">
+       <tr><td></td><td><b>Business</td><td><b>Address</td><td><b>Comments</td></tr>
         <%@result.each do |a|%>
-       <tr><td><input type="button" value="SELECT" onclick="self.location.href='/locations/<%= a.id%>'"></td><td><%= a.business_name%></td><td><%= a.address%></td><td align=right><%= a.comments.count%></td></tr>
+       <tr><td><input type="button" value="SELECT" onclick="self.location.href='/locations/<%= a.id%>'"></td><td><%= a.business_name%></td><td><%= a.address%></td><td align=center><%= a.comments.count%></td></tr>
         <%end%>
     </table>
 <%end%>
