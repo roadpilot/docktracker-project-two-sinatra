@@ -2,6 +2,9 @@
   <div class="col-md-8 col-md-offset-2">
     <h2>Welcome to DockTracker!</h2>
 
+    <% if flash[:error] %>
+    <h2 style="color:red;"><%= flash[:error] %></h2>
+    <% end %>
     <div class="content">
     <form method="post" action="/">
     <label>Handle:<input type="text" name="handle"></label><br>
