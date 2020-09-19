@@ -10,7 +10,7 @@ td {padding-right:10px;}
     <input type="submit" value="Search">
     <input type="button" value="Clear" onclick="self.location.href='/locations'">
     </form>
-<%if @search != nil %>
+<%if @result.count > 0 %>
     <h3>Search results...</h3>
     <table cellspacing=2 width="600">
        <tr><td></td><td><b>Business</td><td><b>Address</td><td><b>Comments</td></tr>
@@ -18,5 +18,7 @@ td {padding-right:10px;}
        <tr><td><input type="button" value="SELECT" onclick="self.location.href='/locations/<%= a.id%>'"></td><td><%= a.business_name%></td><td><%= a.address%></td><td align=center><%= a.comments.count%></td></tr>
         <%end%>
     </table>
+<%else%>
+    <h3>No results for your search.  Try again...</h3>
 <%end%>
 </div>
