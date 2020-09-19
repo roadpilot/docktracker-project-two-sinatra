@@ -12,9 +12,7 @@ class UsersController < ApplicationController
         # logged_in?.to_s
     else
         # show an error message
-        # flash[:message] = "Your credentials were invalid. Try again!"
-        # # redirecting back to the login page
-        # # this is where my error message with will display (at the login route)
+        flash[:error] = "Either your handle or your password was wrong. Try again!"
     end
     redirect '/'
   end
@@ -34,7 +32,7 @@ class UsersController < ApplicationController
   # if params[:handle].empty? || params[:email].empty? || params[:password].empty?
   @user = User.new(params)
     if @user.save
-      binding.pry
+      # binding.pry
       session[:user_id] = @user.id
       redirect '/locations'
     else
