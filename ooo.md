@@ -2,27 +2,6 @@
 
 The Sinatra Project repo has a helpful [`spec.md` file](https://github.com/learn-co-students/sinatra-cms-app-assessment-online-web-sp-000/blob/master/spec.md) that outlines the requirements for the Sinatra Project but we wanted to outline a suggested flow of execution. We put together this "Order of Operations Guide" for organizing and completing your Sinatra Project. This guide is based on the 4-part project build that happens ever 2-week study group cycle. All study groups can be found [here](https://learn.co/study-groups).
 
-# Specifications for the Sinatra Assessment
-
-Specs:
-- [ ] Use Sinatra to build the app
-- [ ] Use ActiveRecord for storing information in a database
-- [ ] Include more than one model class (e.g. User, Post, Category)
-- [ ] Include at least one has_many relationship on your User model (e.g. User has_many Posts)
-- [ ] Include at least one belongs_to relationship on another model (e.g. Post belongs_to User)
-- [ ] Include user accounts with unique login attribute (username or email)
-- [ ] Ensure that the belongs_to resource has routes for Creating, Reading, Updating and Destroying
-- [ ] Ensure that users can't modify content created by other users
-- [ ] Include user input validations
-- [ ] BONUS - not required - Display validation failures to user with error message (example form URL e.g. /posts/new)
-- [ ] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
-
-Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
-
 The application we build in the project build is an "Artist Portfolio App". **User story: A user should be able to login/sign up to post, edit, or delete their artwork or see the artwork of other users.**
 
 ## Checklist
@@ -129,7 +108,7 @@ The application we build in the project build is an "Artist Portfolio App". **Us
   - Make sure a user can't edit or delete a post that doesn't belong to them.
 - [X] 24. Refactor your code to make it more DRY!
   - **Ask**: Where am I repeating myself?
-- [ ] 25. Create a `README.md`
+- [X] 25. Create a `README.md`
   - Include a short description, install instructions, a contributors guide and a link to the license for your code
 
 ### Bonus
@@ -140,7 +119,7 @@ The application we build in the project build is an "Artist Portfolio App". **Us
   - Not bootstrap: [Materialize](https://materializecss.com/)
 
 ### Confirm
-- [ ] You have a large number of small Git commits
-- [ ] Your commit messages are meaningful
-- [ ] You made the changes in a commit that relate to the commit message
-- [ ] You don't include changes in a commit that aren't related to the commit message
+- [X] You have a large number of small Git commits
+- [X] Your commit messages are meaningful
+- [X] You made the changes in a commit that relate to the commit message
+- [X] You don't include changes in a commit that aren't related to the commit message
